@@ -2,7 +2,6 @@
 
 function remove(id)
 {
-  alert(id);
   var cartList = localStorage.getItem('itemCount');
   var cartArray = JSON.parse(cartList);
   delete cartArray[id];
