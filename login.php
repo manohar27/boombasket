@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "jz21";
-$password = "db_booom";
-$dbname = "shopping";
+include 'dbheader.php';
 $email = $_POST['email'];
 $passwd=$_POST['passwd'];
 $user=array();

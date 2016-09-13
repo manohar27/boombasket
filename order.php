@@ -65,7 +65,8 @@ session_start();
 if(isset($_POST['submit']))
 {
 
-$servername = "localhost"; $username = "jz21"; $password = "db_booom"; $dbname = "shopping"; $email = $_POST['email']; $passwd=$_POST['passwd']; 
+include 'dbheader.php';
+$email = $_POST['email']; $passwd=$_POST['passwd']; 
 $cartList=$_POST['cartList'];
 $paymentType='cod'; // Create connection 
 $conn = mysqli_connect($servername, $username, $password, $dbname); // Check connection 

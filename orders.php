@@ -110,7 +110,8 @@
         <?php
 session_start();
 
-    $servername = "localhost"; $username = "jz21"; $password = "db_booom"; $dbname = "shopping"; $email = $_SESSION['user']; $userID = $_SESSION['userID'];       
+    include 'dbheader.php';
+ $email = $_SESSION['user']; $userID = $_SESSION['userID'];       
     $conn = mysqli_connect($servername, $username, $password, $dbname); // Check connection 
     if (!$conn) {
       echo "connection failed";
