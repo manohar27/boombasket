@@ -1,11 +1,21 @@
 
 
-
-var cart = localStorage.getItem('cartList');
+function remove(id)
+{
+  alert(id);
+  var cartList = localStorage.getItem('itemCount');
+  var cartArray = JSON.parse(cartList);
+  delete cartArray[id];
+  localStorage.setItem('itemCount',JSON.stringify(cartArray));
+  var count = Object.keys(cartArray).length;
+  localStorage.setItem('count',count);
+  location.reload();
+}
+var cart = localStorage.getItem('itemCount');
 var total=0;
 var name='';
 var item_template='';
-if(cart==null)
+if(cart==null || cart=="{}")
  document.getElementById('list').innerHTML = "<h2>Your cart is empty</h2>";
 else
 {
@@ -16,7 +26,7 @@ else
  var count=Object.keys(itemCounts).length;
  var cartList=Object.keys(itemCounts);
  var lang=localStorage.getItem('lang');
-  item_template=`<h2>${count} items in your cart</h2><table cellspacing="50px">
+  item_template=`<h2>${count} items in your cart</h2><table id="cartTable" cellspacing="50px">
 
    <tr>
      <th>Item </th>
@@ -56,13 +66,14 @@ for(var i in cartList)
 		}
 	}
 	total=total+parseInt(price)*itemCounts[cartList[i]];
-  item_template+=`<tr>
+  item_template+=`<tr >
    <td><img src="img/${category}/${img}.jpg" style="float:left" height="50px" width="50px" />${name}</td>
    <td>&nbsp  &nbsp</td>
 
    <td>${itemCounts[cartList[i]+'']}</td>
    <td>&nbsp  &nbsp</td>
    <td><i class="fa fa-inr"></i> ${price}</td>
+   <td><button onclick="remove('${cartList[i]}')">Delete</button</td>
    </tr>`;	
 //document.getElementById('list').innerHTML=item_template; 
     }

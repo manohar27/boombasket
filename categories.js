@@ -83,11 +83,13 @@ if(results.hits.total>0){
  var prodId=`${cat}_${items[i]._source.Name}_${items[i]._source.Quantity}`;
  if((lang=="Chinese" || lang=="Korean") && cat=="games")prodName = items[i]._source[lang];
  else prodName=items[i]._source.Name;	
+ if(items[i]._source.Description==null)items[i]._source.Description=items[i]._source.Name;
  if(items[i]._source.Quantity==null)items[i]._source.Quantity='';
    item_template += `<div class="col-md-4"  id="${cat}_${items[i].Name}_${items[i].Quantity}">  <h2>${prodName}</h2>
-                                        <a href="javascript:addtocart('{$i}')" > <img height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
-                                        <p> ${items[i]._source.Price}<p>
+                                        <a href="javascript:addtocart('{$i}')" > <img class="thumbnail" title="${items[i]._source.Description}" height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
+                                        <p> <b><i class="fa fa-inr"></i>${items[i]._source.Price}</b><p>
                                         <p>${items[i]._source.Quantity}<p>
+                                        <label>Qty</label>
                                         <input type="text" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />&nbsp
 
 					 <button class="btn btn-success" onclick="add('${items[i]._source.id}')" value="Add to cart" >Add to cart</button>
@@ -132,6 +134,8 @@ var name=[];
 					<a href="javascript:addtocart('{$i}')" > <img class="thumbnail" height="150px" width="150px" src="./img/${cat}/${name[i].Name}.jpg" /></a>
 					<p> <b><i class="fa fa-inr"></i>${name[i].Price}</b><p>
 					<p>${name[i].Quantity}<p>
+                    <label>Qty</label>
+
 					<input type="text" value="1" class="col-lg-2"  id="${name[i].id}" />&nbsp
 					<button class="btn btn-success"  onclick="add('${name[i].id}')" value="Add to cart" >Add to cart</button>
 					</div>`
