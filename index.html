@@ -56,7 +56,7 @@
 
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-        <form class="navbar-form navbar-right">
+        <form class="navbar-form navbar-right" action="javascript:search()"> 
             <div class="form-group">
               <input type="text" id="query" placeholder="search for products" class="form-control">
             </div>
@@ -89,7 +89,7 @@
          	<a href="javascript:category('games')"> <img height="120px" width="200px" src="./games.jpg"></a>
 
        `;
-       document.getElementById('langSelector').innerHTML = ` <select id ="lang" onchange='language()'> <option value='English'>English</option> <option value='Chinese'>Chinese</option> <option value='Korean'>Korean</option></select>`;
+       document.getElementById('langSelector').innerHTML = ` <select id ="lang" onchange='language()'> <option value='English'>English</option> <option value='Chinese'>添加(Chinese)</option> <option value='Korean'>한국어(Korean)</option></select>`;
      }
 		   else
 			document.getElementById('more').innerHTML="";

@@ -120,12 +120,38 @@ session_start();
     $results = mysqli_query($conn,$query);
     if(mysqli_num_rows($results)>0)
     {
-      echo "<table ><th>Order ID</th><th>&nbsp</th><th>&nbsp</th><th>Amount</th>";
+      echo "<table ><th><h2>Order ID</h2></th><th><h2>Products</h2></th><th><h2>Amount</h2></th>";
 
       while($row=mysqli_fetch_assoc($results))
       {
+        $cartList = $row['cartList'];
+        $cartList = json_decode($cartList,true);
+        $item = key($cartList);
+        $category = substr($item,0,2);
+        switch($category){
+        case "pc" : $category="personal";break;
+        case "hh" : $category="household";break;
+        case "bv" : $category="beverages";break;
+        case "ga" : $category="games";break;
+        } 
+        $json_file=file_get_contents("/usr/share/nginx/html/".$category.".json");
+        $file_items=json_Decode($json_file,true);
+        foreach($file_items as $prod)
+        {
 
-        echo "<tr><td>$row[orderId]</td><td>&nbsp</td><td>&nbsp</td><td><i class='fa fa-inr'></i>$row[total]</tr>";
+          if($prod["id"]==$item)
+          {
+            
+            $productString = $prod["Name"];
+          }
+            
+        }
+        $cartLen = sizeof($cartList);
+        if($cartLen>1)
+        $productString= $productString . ' and ' . $cartLen . ' more';
+          
+
+        echo "<h4><tr><td><h3>$row[orderId]</h3></td><td><h3>$productString</h3></td><td><h3><i class='fa fa-inr'></i> $row[total]</h3></td></tr>";
       }
       echo "</table>";
     }

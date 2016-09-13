@@ -64,6 +64,7 @@ function add(id){
 function search(){
 var item_template='';
 var query=document.getElementById('query').value;
+if(query.indexOf('*')>-1) return;
 var hostname=window.location.hostname;
 var url = "http://"+hostname+":9200/shopping/_search?q=";
 var lang = localStorage.getItem('lang');
@@ -87,7 +88,7 @@ if(results.hits.total>0){
                                         <a href="javascript:addtocart('{$i}')" > <img height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
                                         <p> ${items[i]._source.Price}<p>
                                         <p>${items[i]._source.Quantity}<p>
-                                        <input type="number" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />&nbsp
+                                        <input type="text" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />&nbsp
 
 					 <button class="btn btn-success" onclick="add('${items[i]._source.id}')" value="Add to cart" >Add to cart</button>
                                         </div>`
@@ -131,7 +132,7 @@ var name=[];
 					<a href="javascript:addtocart('{$i}')" > <img class="thumbnail" height="150px" width="150px" src="./img/${cat}/${name[i].Name}.jpg" /></a>
 					<p> <b><i class="fa fa-inr"></i>${name[i].Price}</b><p>
 					<p>${name[i].Quantity}<p>
-					<input type="number" value="1" class="col-lg-2" maxlength="3" id="${name[i].id}" />&nbsp
+					<input type="text" value="1" class="col-lg-2"  id="${name[i].id}" />&nbsp
 					<button class="btn btn-success"  onclick="add('${name[i].id}')" value="Add to cart" >Add to cart</button>
 					</div>`
 
