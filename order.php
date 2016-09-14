@@ -119,6 +119,8 @@ if(isset($_SESSION['user']))
 	$order=mysqli_query($conn,$qr);
 	if($order)
         {
+          setlocale(LC_MONETARY, 'en_IN');
+$total = money_format('%!i', $total);
 		echo '<script>document.getElementById("pcontainer").innerHTML="Your order for Rs.'.$total.' has been confirmed";localStorage.clear();</script>';		
 		echo "<center><a href='orders.php'>Click here to view your orders</a></center>";
 	}

@@ -97,7 +97,7 @@
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="page-header">
       <div class="container">
         <h1 style="align:center" id="heading">My Orders</h1>
        
@@ -117,18 +117,21 @@ session_start();
       echo "connection failed";
 
     }
-    $query = "select * from orders where userId=$userID";
+    $query = "select * from orders where userId=$userID order by orderId DESC";
     $results = mysqli_query($conn,$query);
     if(mysqli_num_rows($results)>0)
     {
-      echo "<table ><th><h2>Order ID</h2></th><th><h2>Products</h2></th><th><h2>Amount</h2></th>";
 
       while($row=mysqli_fetch_assoc($results))
       {
+        echo "<div class='panel panel-default'> <h4 class='panel-heading'>Order# - $row[orderId]</h4>";
         $cartList = $row['cartList'];
         $cartList = json_decode($cartList,true);
-        $item = key($cartList);
+        $cartItems = array_keys($cartList);
+        foreach($cartItems as $item)
+         { 
         $category = substr($item,0,2);
+        $qty = $cartList[$item];
         switch($category){
         case "pc" : $category="personal";break;
         case "hh" : $category="household";break;
@@ -149,18 +152,21 @@ session_start();
           if($prod["id"]==$item)
           {
             
-            $productString = $prod["Name"];
+            $productName = $prod["Name"];
+
+            $productPrice = $prod["Price"];
+            setlocale(LC_MONETARY, 'en_IN');
+$productPrice= money_format('%!i', $productPrice);
           }
             
         }
-        $cartLen = sizeof($cartList);
-        if($cartLen>1)
-      $productString= $productString . ' and ' . ($cartLen-1) . ' more';
+        echo "<img height='100px' width='100px' src='img/$category/$productName.jpg' style='float:left'/><p>&nbsp&nbsp$productName</p><p>&nbsp&nbspQty -$qty</p><p>&nbsp&nbspPrice - <i class='fa fa-inr'></i> $productPrice</p><hr>";
+        }
           
-
-        echo "<h4><tr><td><h3>$row[orderId]</h3></td><td><h3>$productString</h3></td><td><h3><i class='fa fa-inr'></i> $row[total]</h3></td></tr>";
+setlocale(LC_MONETARY, 'en_IN');
+$row[total] = money_format('%!i', $row[total]);
+  echo "<h3 style='text-align:right'>Total :<i class='fa fa-inr'></i> $row[total]</h3></div>";
       }
-      echo "</table>";
     }
     else
       echo "<h2>No orders found</h2>";

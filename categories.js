@@ -17,6 +17,15 @@ switch(lang)
 localStorage.setItem('lang',lang);
 }
 
+function standard(x)
+{
+  var lastThree = x.substring(x.length-3);
+var otherNumbers = x.substring(0,x.length-3);
+if(otherNumbers != '')
+    lastThree = ',' + lastThree;
+var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+return res;
+}
 
 
 
@@ -86,9 +95,12 @@ if(results.hits.total>0){
  else prodName=items[i]._source.Name;	
  if(items[i]._source.Description==null)items[i]._source.Description=items[i]._source.Name;
  if(items[i]._source.Quantity==null)items[i]._source.Quantity='';
+ var price=items[i]._source.Price.split(' ')[0];
+ if(price.length>3)price = standard(price);
    item_template += `<div class="col-md-4 panel panel-default"  id="${cat}_${items[i].Name}_${items[i].Quantity}">  <h2>${prodName}</h2>
                                         <a href="javascript:addtocart('{$i}')" > <img class="thumbnail" onerror='this.src="./img/spares.jpg"' title="${items[i]._source.Description}" height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
-                                        <p> <b><i class="fa fa-inr"></i>${items[i]._source.Price.split(' ')[0]}</b><p>
+
+                                        <p> <b><i class="fa fa-inr"></i>${price}</b><p>
                                         <p>${items[i]._source.Quantity}<p>
                                         <label>Qty</label>
                                         <input type="text" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />&nbsp
@@ -204,11 +216,11 @@ var signUp=`<div class="modal-dialog" role="document">
        <form action="signUp.php" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required autofocus>
   </div>
   <div id="formGroup" class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password">
+    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" required>
   
      <label >Country </label> <select class="form-control" id="country" name="country">
 <option value="">Country...</option>
@@ -469,3 +481,4 @@ var signUp=`<div class="modal-dialog" role="document">
 `;
 document.getElementById('loginModal').innerHTML=signUp;
 }
+

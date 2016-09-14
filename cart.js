@@ -25,14 +25,14 @@ else
  var count=Object.keys(itemCounts).length;
  var cartList=Object.keys(itemCounts);
  var lang=localStorage.getItem('lang');
-  item_template=`<h2>${count} items in your cart</h2><table id="cartTable" cellspacing="50px">
+  item_template=`<div class="panel panel-default"><h2 class="panel-heading">${count} items in your cart</h2><table id="cartTable" class="table" style="border-bottom: 1px solid #000;"cellspacing="50px">
 
    <tr>
      <th>Item </th>
      <th>&nbsp  &nbsp</th>
-     <th>Quantity</th>
-     <th>&nbsp  &nbsp</th>
      <th>Price</th>
+     <th>&nbsp  &nbsp</th>
+     <th>Quantity</th>
     </tr>`;
 for(var i in cartList)
  {
@@ -71,13 +71,16 @@ for(var i in cartList)
 		}
 	}
 	total=total+parseInt(price)*itemCounts[cartList[i]];
-  item_template+=`<tr >
-   <td><img src="img/${category}/${img}.jpg" onerror="this.style.display='none'" style="float:left" height="50px" width="50px" />${name}</td>
-   <td>&nbsp  &nbsp</td>
-
-   <td>${itemCounts[cartList[i]+'']}</td>
+  price=price+'';
+  if(price.length>3) price = standard(price);
+  item_template+=`<tr style="border-bottom: 1px solid #000;">
+   <td><img src="img/${category}/${img}.jpg" onerror="this.style.display='none'" style="float:left" height="50px" width="50px" />&nbsp&nbsp${name}</td>
    <td>&nbsp  &nbsp</td>
    <td><i class="fa fa-inr"></i> ${price}</td>
+
+   <td>&nbsp  &nbsp</td>
+      <td>${itemCounts[cartList[i]+'']}</td>
+
    <td><button onclick="remove('${cartList[i]}')">Delete</button</td>
    </tr>`;	
 //document.getElementById('list').innerHTML=item_template; 
@@ -86,7 +89,10 @@ for(var i in cartList)
  
  
 }
- item_template+="</table>"; 
+ item_template+="</table></div>"; 
+ total=total+'';
+ if(total.length>3)
+ total=standard(total);
  item_template+="<h2>Your order total is <i class='fa fa-inr'></i>"+total+"</h2><div id='proceedButton'></div>";
 
 
@@ -102,3 +108,12 @@ for(var i in cartList)
 
 }
 
+function standard(x)
+{
+  var lastThree = x.substring(x.length-3);
+var otherNumbers = x.substring(0,x.length-3);
+if(otherNumbers != '')
+    lastThree = ',' + lastThree;
+var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+return res;
+}

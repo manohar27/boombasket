@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
 if($result)
  echo "<script>alert('Sign Up Complete'); window.location.href = document.referrer;</script>";
 else
- echo "$email, $country";
+ echo "<script>alert('user Already Exists, please sign in ');window.location.href = document.referrer;</script>";
 // echo "<script>alert('Something went wrong'); window.location.href = document.referrer;</script>";
 mysqli_close($conn);
 }
