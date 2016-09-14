@@ -1,3 +1,4 @@
+
   <!DOCTYPE html>
   <!-- saved from url=(0043)http://getbootstrap.com/examples/jumbotron/ -->
   <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +21,7 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <script src="categories.js" />
-
+  <script src="planes.js" />
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -96,10 +97,10 @@
   		}
   	
                   });
-            
+            </script>
+  	<script>
   	var count=localStorage.getItem('count');
-    console.log(count);
-  	if(count!=0 && count!=null) 
+  	if(count!=null)
   		document.getElementById('cartCount').innerHTML=" ("+count+") ";
   	</script>
   	
@@ -142,75 +143,16 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
+        <div class="row">
         <div class="container">
-          <h1 style="align:center" id="heading">Easy Grocery Shopping</h1>
-         
+          <div class="col-md-6" >
+          <a href="javascript:renderModels('fj')" ><img class="img-responsive img-thumbnail" src="F-16.jpg"/> <h2> Fighter Jets </h2></a>
+        </div>
+        <div class="col-md-6" >
+          <a href="javascript:renderModels('hl')" ><img class="img-responsive img-thumbnail" src="Mi-28.jpg"/> <h2> Helicopters </h2></a>
         </div>
       </div>
-
-      <div class="container">
-        <!-- Example row of columns -->
-        <div class="row"  id='list'>
-          <div class="col-md-3" id="household"> 
-            <h2>Household</h2>
-  			<a href="javascript:category('household')" > <img class="img-responsive" src="./household.jpg" /></a>
-          </div>
-          <div class="col-md-3">
-            <h2>Beverages</h2>
-           	<a href="javascript:category('beverages')" > <img height="120px" width="200px" src="./beverages.jpg" /></a>
-
-         </div>
-          <div class="col-md-3">
-            <h2>Personal Care</h2>
-               <a href="javascript:category('personal')" > <img height="120px" width="200px" src="./personal.jpg" /></a>
-          </div>
-
-          <div class="col-md-3" id="more">
-           <button id="signin" type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-primary btn-lg">More</button>
-               
-          </div>
- <center> <div class="row">
-  <div class="col-md-12">
-    <a href="javascript:category('planes')" ><img src="F-35.jpg" class="img-circle" height="200" width="200"/><h3> NEW! Buy Model Airplanes</h3></a>
-  </div></div></center>
-        </div>
-        <br><br>
-        <hr>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Select Model</h4>
-        </div>
-        <div class="modal-body">
-        <center>  <select id="modelSelect">
-            <option value="F-16">F-16</option>
-            <option value="F-35">F-35</option>
-            <option value="Mi-28">Mi-28</option>
-
-            
-            <option value="Dhruv">Dhruv</option>
-            <option value="Sukhoi">Sukhoi</option>
-            
-
-          </select></center>
-        </div>
-        <div class="modal-footer">
-          <button type="button" onclick="javascript:category('spares')" class="btn btn-default" data-dismiss="modal">Okay</button>
-        </div>
       </div>
-      
-    </div>
-  </div>
-
-        <footer>
-          <p>© 2016 BOOMBasket, Inc.</p>
-          <div id="langSelector"> </div>
-        </footer>
-      </div> <!-- /container -->
       <script>
       if(localStorage.getItem('lang')==null)localStorage.setItem('lang',"English"); else document.getElementById('lang').value=localStorage.getItem('lang');</script>
 

@@ -1,0 +1,44 @@
+[
+ {
+   "id": "pl0",
+   "Name": "F-16",
+   "Price": "999 Rs",
+   "Type": "fj"
+ },
+ {
+   "id": "pl1",
+   "Name": "Sukhoi",
+   "Price": "1500 Rs",
+   "Type": "fj"
+ },
+ {
+   "id": "pl2",
+   "Name": "Mig-21",
+   "Price": "1200 Rs",
+   "Type": "fj"
+ },
+ {
+   "id": "pl3",
+   "Name": "Tejas",
+   "Price": "1000 Rs",
+   "Type": "fj"
+ },
+ {
+   "id": "pl4",
+   "Name": "F-35",
+   "Price": "2500 Rs",
+   "Type": "fj"
+ },
+ {
+   "id": "pl5",
+   "Name": "Dhruv",
+   "Price": "800 Rs",
+   "Type": "hl"
+ },
+ {
+   "id": "pl6",
+   "Name": "Mi-28",
+   "Price": "1500 Rs",
+   "Type": "hl"
+ }
+]

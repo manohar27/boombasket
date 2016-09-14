@@ -1,0 +1,32 @@
+[
+ {
+   "id": "f30",
+   "Name": "F-35 - Vertical Stabilizers",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "f31",
+   "Name": "F-35 - Horizontal Stabilizers",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "f32",
+   "Name": "F-35 - Wing",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "f33",
+   "Name": "F-35 - Missiles",
+   "Price": "300 Rs"
+ },
+ {
+   "id": "f34",
+   "Name": "F-35 - Body",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "f35",
+   "Name": "F-35 - Landing Gear",
+   "Price": "100 Rs"
+ }
+]

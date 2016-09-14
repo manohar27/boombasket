@@ -22,7 +22,8 @@ localStorage.setItem('lang',lang);
 
 function add(id){
 	var itemCount = document.getElementById(id).value;
-	
+	var category = id.substring(0,2);
+
 	if(itemCount>=1 && itemCount<=200)
 	{
 	var cart = localStorage.getItem('cartList');
@@ -66,7 +67,7 @@ var item_template='';
 var query=document.getElementById('query').value;
 if(query.indexOf('*')>-1) return;
 var hostname=window.location.hostname;
-var url = "http://"+hostname+":9200/shopping/_search?q=";
+var url = "http://"+hostname+":9200/shopping/_search?size=1000&q=";
 var lang = localStorage.getItem('lang');
 if(lang==null)lang="English";
 if(lang!='English')
@@ -85,9 +86,9 @@ if(results.hits.total>0){
  else prodName=items[i]._source.Name;	
  if(items[i]._source.Description==null)items[i]._source.Description=items[i]._source.Name;
  if(items[i]._source.Quantity==null)items[i]._source.Quantity='';
-   item_template += `<div class="col-md-4"  id="${cat}_${items[i].Name}_${items[i].Quantity}">  <h2>${prodName}</h2>
-                                        <a href="javascript:addtocart('{$i}')" > <img class="thumbnail" title="${items[i]._source.Description}" height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
-                                        <p> <b><i class="fa fa-inr"></i>${items[i]._source.Price}</b><p>
+   item_template += `<div class="col-md-4 panel panel-default"  id="${cat}_${items[i].Name}_${items[i].Quantity}">  <h2>${prodName}</h2>
+                                        <a href="javascript:addtocart('{$i}')" > <img class="thumbnail" onerror='this.src="./img/spares.jpg"' title="${items[i]._source.Description}" height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
+                                        <p> <b><i class="fa fa-inr"></i>${items[i]._source.Price.split(' ')[0]}</b><p>
                                         <p>${items[i]._source.Quantity}<p>
                                         <label>Qty</label>
                                         <input type="text" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />&nbsp
@@ -116,24 +117,29 @@ function fetchItems(cat)
 {
 var name=[];
 	var item_template ='';
-	switch(cat){
+	/*switch(cat){
 
 	case 'household' : 
 	case 'beverages' :
 	case 'personal' :
-	case 'games' : $.getJSON(cat+'.json',function(items){
+	case 'planes' :
+	case  'F-16' : 
+	case 'games' :*/ $.getJSON(cat+'.json',function(items){
                                  name=items;
                                  var lang = localStorage.getItem('lang');
-                                 if(lang!="English" && cat=="games")prodName=lang;else prodName="Name";
+                                 if(lang!="English" && cat=="games")prodName=lang;else  prodName="Name";
+
+
 				for( var i in name)
 				{		
 					var prodId=`${cat}_${name[i].Name}_${name[i].Quantity}`;
 					if(name[i].Quantity==null) name[i].Quantity='';
-					console.log(name[i].Name);
+
+					
 			 		item_template += `<div class="col-md-4" id="${cat}_${name[i].Name}_${name[i].Quantity}"> <h4>${name[i][prodName]}</h4> 			
-					<a href="javascript:addtocart('{$i}')" > <img class="thumbnail" height="150px" width="150px" src="./img/${cat}/${name[i].Name}.jpg" /></a>
-					<p> <b><i class="fa fa-inr"></i>${name[i].Price}</b><p>
+					<a href="javascript:addtocart('{$i}')" > <img class="thumbnail" id="${name[i].Name}" onerror='this.src="./img/spares.jpg"' height="150px" width="150px" src="./img/${cat}/${name[i].Name}.jpg" /></a>
 					<p>${name[i].Quantity}<p>
+					<p><b><i class="fa fa-inr"></i>${name[i].Price.split(' ')[0]}</b></p>
                     <label>Qty</label>
 
 					<input type="text" value="1" class="col-lg-2"  id="${name[i].id}" />&nbsp
@@ -143,16 +149,29 @@ var name=[];
 				}
 				//console.log(item_template);
 				document.getElementById('list').innerHTML=item_template;
+					
+
                                 });
 	
-	}
+//	}
 	
 
     
 }
 
 function category(cat){
-	document.getElementById("heading").innerHTML = cat.toUpperCase();
+	if(cat=="spares")
+	{var selection = document.getElementById('modelSelect').value;
+	
+	localStorage.setItem('plane',selection);
+	category(selection);
+	}
+	if(cat=="planes")
+	{
+		document.getElementById("heading").innerHTML=cat.toUpperCase() + "			<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Buy Spares</button>";
+	}
+	else
+		document.getElementById("heading").innerHTML = cat.toUpperCase();
  fetchItems(cat);
 
 }

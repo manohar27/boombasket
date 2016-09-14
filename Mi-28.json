@@ -1,0 +1,32 @@
+[
+ {
+   "id": "mi0",
+   "Name": "Mi-28 - Cockpit",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "mi1",
+   "Name": "Mi-28 - Main Rotor",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "mi2",
+   "Name": "Mi-28 - Tail Rotor",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "mi3",
+   "Name": "Mi-28 - Tail",
+   "Price": "300 Rs"
+ },
+ {
+   "id": "mi4",
+   "Name": "Mi-28 - Body",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "mi5",
+   "Name": "Mi-28 - Landing Skid",
+   "Price": "100 Rs"
+ }
+]

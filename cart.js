@@ -45,6 +45,12 @@ for(var i in cartList)
 	case "hh" : category="household";break;
 	case "bv" : category="beverages";break;
   case "ga" : category="games";break;
+  case "pl" : category="planes";break;
+  case "f1" : category="F-16";break;
+  case "sk" : category="Sukhoi";break;
+  case "mi" : category="Mi-28";break;
+  case "dh" : category="Dhruv";break;
+  case "f3" : category="F-35";break;
    }
  
   $.ajax({
@@ -66,7 +72,7 @@ for(var i in cartList)
 	}
 	total=total+parseInt(price)*itemCounts[cartList[i]];
   item_template+=`<tr >
-   <td><img src="img/${category}/${img}.jpg" style="float:left" height="50px" width="50px" />${name}</td>
+   <td><img src="img/${category}/${img}.jpg" onerror="this.style.display='none'" style="float:left" height="50px" width="50px" />${name}</td>
    <td>&nbsp  &nbsp</td>
 
    <td>${itemCounts[cartList[i]+'']}</td>

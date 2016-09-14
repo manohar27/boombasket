@@ -1,0 +1,32 @@
+[
+ {
+   "id": "sk0",
+   "Name": "Sukhoi - Vertical Stabilizers",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "sk1",
+   "Name": "Sukhoi - Horizontal Stabilizers",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "sk2",
+   "Name": "Sukhoi - Wing",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "sk3",
+   "Name": "Sukhoi - Missiles",
+   "Price": "300 Rs"
+ },
+ {
+   "id": "sk4",
+   "Name": "Sukhoi - Body",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "sk5",
+   "Name": "Sukhoi - Landing Gear",
+   "Price": "100 Rs"
+ }
+]

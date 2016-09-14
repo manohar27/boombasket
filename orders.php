@@ -134,6 +134,12 @@ session_start();
         case "hh" : $category="household";break;
         case "bv" : $category="beverages";break;
         case "ga" : $category="games";break;
+        case "pl" : $category="planes";break;
+        case "f1" : $category="F-16";break;
+  case "sk" : $category="Sukhoi";break;
+  case "mi" : $category="Mi-28";break;
+  case "dh" : $category="Dhruv";break;
+  case "f3" : $category="F-35";break;
         } 
         $json_file=file_get_contents("/usr/share/nginx/html/".$category.".json");
         $file_items=json_Decode($json_file,true);
@@ -149,7 +155,7 @@ session_start();
         }
         $cartLen = sizeof($cartList);
         if($cartLen>1)
-        $productString= $productString . ' and ' . $cartLen . ' more';
+      $productString= $productString . ' and ' . ($cartLen-1) . ' more';
           
 
         echo "<h4><tr><td><h3>$row[orderId]</h3></td><td><h3>$productString</h3></td><td><h3><i class='fa fa-inr'></i> $row[total]</h3></td></tr>";

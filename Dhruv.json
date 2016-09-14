@@ -1,0 +1,32 @@
+[
+ {
+   "id": "dh0",
+   "Name": "Dhruv - Cockpit",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "dh1",
+   "Name": "Dhruv - Main Rotor",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "dh2",
+   "Name": "Dhruv - Tail Rotor",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "dh3",
+   "Name": "Dhruv - Tail",
+   "Price": "300 Rs"
+ },
+ {
+   "id": "dh4",
+   "Name": "Dhruv - Body",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "dh5",
+   "Name": "Dhruv - Landing Skid",
+   "Price": "100 Rs"
+ }
+]

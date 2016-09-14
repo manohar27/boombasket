@@ -91,6 +91,12 @@ if(isset($_SESSION['user']))
 		case "hh" : $category="household";break;
 		case "bv" : $category="beverages";break;
     case "ga" : $category="games";break;
+    case "pl" : $category = "planes";break;
+    case "f1" : $category="F-16";break;
+  case "sk" : $category="Sukhoi";break;
+  case "mi" : $category="Mi-28";break;
+  case "dh" : $category="Dhruv";break;
+  case "f3" : $category="F-35";break;
 		}	
 		$json_file=file_get_contents("/usr/share/nginx/html/".$category.".json");
 		$file_items=json_Decode($json_file,true);

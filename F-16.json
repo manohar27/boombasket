@@ -1,0 +1,32 @@
+[
+ {
+   "id": "f10",
+   "Name": "F-16 - Vertical Stabilizers",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "f11",
+   "Name": "F-16 - Horizontal Stabilizers",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "f12",
+   "Name": "F-16 - Wing",
+   "Price": "100 Rs"
+ },
+ {
+   "id": "f13",
+   "Name": "F-16 - Missiles",
+   "Price": "300 Rs"
+ },
+ {
+   "id": "f14",
+   "Name": "F-16 - Body",
+   "Price": "200 Rs"
+ },
+ {
+   "id": "f15",
+   "Name": "F-16 - Landing Gear",
+   "Price": "100 Rs"
+ }
+]
