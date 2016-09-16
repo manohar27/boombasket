@@ -160,7 +160,7 @@ $productPrice= money_format('%!i', $productPrice);
           }
             
         }
-        echo "<img height='100px' width='100px' src='img/$category/$productName.jpg' style='float:left'/><p>&nbsp&nbsp$productName</p><p>&nbsp&nbspQty -$qty</p><p>&nbsp&nbspPrice - <i class='fa fa-inr'></i> $productPrice</p><hr>";
+        echo "<img height='100px' width='100px' src="."\"img/$category/$productName.jpg\""." onerror=this.src='img/spares.jpg' style='float:left'/><p>&nbsp&nbsp$productName</p><p>&nbsp&nbspQty: $qty</p><p>&nbsp&nbspPrice - <i class='fa fa-inr'></i> $productPrice</p><hr>";
         }
           
 setlocale(LC_MONETARY, 'en_IN');

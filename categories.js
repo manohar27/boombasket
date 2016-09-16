@@ -97,16 +97,17 @@ if(results.hits.total>0){
  if(items[i]._source.Quantity==null)items[i]._source.Quantity='';
  var price=items[i]._source.Price.split(' ')[0];
  if(price.length>3)price = standard(price);
-   item_template += `<div class="col-md-4 panel panel-default"  id="${cat}_${items[i].Name}_${items[i].Quantity}">  <h2>${prodName}</h2>
+
+   item_template += `<div class="col-md-3 panel panel-default"  id="${cat}_${items[i].Name}_${items[i].Quantity}">  <h4 class="panel-heading">${prodName}</h4>
+   										<center>
                                         <a href="javascript:addtocart('{$i}')" > <img class="thumbnail" onerror='this.src="./img/spares.jpg"' title="${items[i]._source.Description}" height="150px" width="150px" src="./img/${cat}/${items[i]._source.Name}.jpg" /></a>
-
-                                        <p> <b><i class="fa fa-inr"></i>${price}</b><p>
-                                        <p>${items[i]._source.Quantity}<p>
+                                        <br>
+                                        <h5> <b><i class="fa fa-inr"></i>${price}</b><h5>
                                         <label>Qty</label>
-                                        <input type="text" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />&nbsp
-
-					 <button class="btn btn-success" onclick="add('${items[i]._source.id}')" value="Add to cart" >Add to cart</button>
+                                        <input type="text" value="1" class="col-lg-2" maxlength="3" id="${items[i]._source.id}" />
+										<button class="btn btn-success" onclick="add('${items[i]._source.id}')" value="Add to cart" >Add to cart</button></center>
                                         </div>`
+
 
 }
 document.getElementById('list').innerHTML=item_template;
@@ -146,16 +147,24 @@ var name=[];
 				{		
 					var prodId=`${cat}_${name[i].Name}_${name[i].Quantity}`;
 					if(name[i].Quantity==null) name[i].Quantity='';
+					var price=name[i].Price.split(' ')[0];
+ 					if(price.length>3)price = standard(price);
+ 					var sparesButton='';
+					if(cat=="planes")
+						 sparesButton = `<button type='button' class='btn btn-info btn-md' onclick='category("${name[i].Name}")' >Spares</button>`;
 
-					
-			 		item_template += `<div class="col-md-4" id="${cat}_${name[i].Name}_${name[i].Quantity}"> <h4>${name[i][prodName]}</h4> 			
-					<a href="javascript:addtocart('{$i}')" > <img class="thumbnail" id="${name[i].Name}" onerror='this.src="./img/spares.jpg"' height="150px" width="150px" src="./img/${cat}/${name[i].Name}.jpg" /></a>
-					<p>${name[i].Quantity}<p>
-					<p><b><i class="fa fa-inr"></i>${name[i].Price.split(' ')[0]}</b></p>
-                    <label>Qty</label>
+
+			 		item_template += `<div class="col-md-3 panel panel-default" id="${cat}_${name[i].Name}_${name[i].Quantity}"> <h4 class="panel-heading" style="white-space: nowrap;overflow: visible;">${name[i][prodName]}</h4> 			
+					<a href="javascript:addtocart('{$i}')" > <img   id="${name[i].Name}" title="${name[i].Description}" onerror='this.src="./img/spares.jpg"' height="150px" width="150px" src="./img/${cat}/${name[i].Name}.jpg" /></a>
+					<br>
+					<p >&nbsp&nbsp${name[i].Quantity}<p>
+					<p>&nbsp&nbsp<b><i class="fa fa-inr"></i>${price}</b></p>
+                    <label>&nbsp&nbspQty</label>
 
 					<input type="text" value="1" class="col-lg-2"  id="${name[i].id}" />&nbsp
-					<button class="btn btn-success"  onclick="add('${name[i].id}')" value="Add to cart" >Add to cart</button>
+					<button class="btn btn-success"  onclick="add('${name[i].id}')" value="Add to cart" >&nbspAdd to cart</button>
+					${sparesButton}
+					
 					</div>`
 
 				}
@@ -176,14 +185,12 @@ function category(cat){
 	{var selection = document.getElementById('modelSelect').value;
 	
 	localStorage.setItem('plane',selection);
+			document.getElementById('planesCategory').innerHTML='';
+
 	category(selection);
 	}
-	if(cat=="planes")
-	{
-		document.getElementById("heading").innerHTML=cat.toUpperCase() + "			<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Buy Spares</button>";
-	}
-	else
-		document.getElementById("heading").innerHTML = cat.toUpperCase();
+	
+    document.getElementById("heading").innerHTML = cat.toUpperCase();
  fetchItems(cat);
 
 }

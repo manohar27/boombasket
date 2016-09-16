@@ -86,7 +86,7 @@
   		   if(lang=='CN' || lang=='KS'){
   		   document.getElementById("more").innerHTML=`
             <h3 id="gamesHeading" class="panel-heading">Video Games</h3>
-           	<a href="javascript:category('games')"> <img height="120px" width="200px" src="./games.jpg"></a>
+           	<center><a href="javascript:category('games')"> <img height="120px" width="200px" src="./games.jpg"></a></center<
 
          `;
          document.getElementById('langSelector').innerHTML = ` <select id ="lang" onchange='language()'> <option value='English'>English</option> <option value='Chinese'>添加(Chinese)</option> <option value='Korean'>한국어(Korean)</option></select>`;
@@ -94,7 +94,10 @@
   		   else
          {
   			document.getElementById('more').innerHTML="";
-        
+        document.getElementById('more').className=""; 
+        document.getElementById('household').className="col-md-4 panel panel-default";
+        document.getElementById('personal').className="col-md-4 panel panel-default";
+        document.getElementById('beverages').className="col-md-4 panel panel-default";
 
       }
   		}
@@ -157,21 +160,21 @@
         <div class="clearfix row"  id='list'>
           <div class="col-md-3 panel panel-default" id="household"> 
             <h3 class="panel-heading">Household</h3>
-  			<a href="javascript:category('household')" > <img class="img-responsive" src="./household.jpg" /></a>
+  			<center><a href="javascript:category('household')" > <img class="img-responsive" src="./household.jpg" /></a></center>
           </div>
-          <div class="col-md-3 panel panel-default">
+          <div class="col-md-3 panel panel-default" id="beverages">
             <h3 class="panel-heading">Beverages</h3>
-           	<a href="javascript:category('beverages')" > <img height="120px" width="200px" src="./beverages.jpg" /></a>
+<center><a href="javascript:category('beverages')" > <img height="120px" width="200px" src="./beverages.jpg" /></a></center>
 
          </div>
-          <div class="col-md-3 panel panel-default">
+          <div class="col-md-3 panel panel-default" id="personal">
             <h3 class="panel-heading">Personal Care</h3>
-               <a href="javascript:category('personal')" > <img height="120px" width="200px" src="./personal.jpg" /></a>
+               <center><a href="javascript:category('personal')" > <img height="120px" width="200px" src="./personal.jpg" /></a></center>
           </div>          <div class="col-md-3 panel panel-default"  id="more">
            <center> <a id="signin" type="button" data-toggle="modal" data-target="#loginModal"  style="display:table-cell;vertical-align:middle">
 
-           More?
-           <p><span class="glyphicon glyphicon-plus" style="font-size:150px;"></span></p>
+           Click for more
+           <p><span class="glyphicon glyphicon-plus" style="font-size:165px;"></span></p>
                </a></center>
           </div>
          
@@ -179,7 +182,7 @@
         </div>
         <hr>
         <center>
-  <div class="col-md-12">
+  <div class="col-md-12" id="planesCategory">
     <a href="javascript:category('planes')" ><img src="F-35.jpg" class="img-circle" height="200" width="200"/><h3> NEW! Buy Model Airplanes</h3></a>
   </div></center>
         <br><br>
